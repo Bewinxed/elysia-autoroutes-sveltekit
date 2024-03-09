@@ -1,18 +1,26 @@
 {
   "name": "elysia-autoroutes-sveltekit",
   "version": "0.5.0",
-  "description": "File system routing for Elysia.",
   "author": "Robert Soriano <sorianorobertc@gmail.com>",
-  "license": "MIT",
-  "homepage": "https://github.com/wobsoriano/elysia-autoroutes#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wobsoriano/elysia-autoroutes.git"
   },
-  "bugs": "https://github.com/wobsoriano/elysia-autoroutes/issues",
-  "keywords": [
-    "bun"
-  ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.40.0",
+    "@types/bun": "^1.0.0",
+    "bumpp": "^9.2.1",
+    "bunchee": "^4.2.6",
+    "elysia": "^0.8.5",
+    "eslint": "^8.46.0",
+    "eslint-plugin-import": "^2.28.0",
+    "typescript": "5.3.3"
+  },
+  "peerDependencies": {
+    "elysia": "^0.8.0"
+  },
   "exports": {
     ".": {
       "import": {
@@ -25,12 +33,16 @@
       }
     }
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "bugs": "https://github.com/wobsoriano/elysia-autoroutes/issues",
+  "description": "File system routing for Elysia.",
   "files": [
     "dist"
   ],
+  "homepage": "https://github.com/wobsoriano/elysia-autoroutes#readme",
+  "keywords": [
+    "bun"
+  ],
+  "license": "MIT",
   "scripts": {
     "dev": "bun run ./playground/index.ts",
     "build": "bunchee",
@@ -39,17 +51,5 @@
     "release": "bumpp && npm publish",
     "lint:fix": "eslint . --fix"
   },
-  "peerDependencies": {
-    "elysia": "^0.8.0"
-  },
-  "devDependencies": {
-    "@antfu/eslint-config": "^0.40.0",
-    "@types/bun": "^1.0.0",
-    "bumpp": "^9.2.1",
-    "bunchee": "^4.2.6",
-    "elysia": "^0.8.5",
-    "eslint": "^8.46.0",
-    "eslint-plugin-import": "^2.28.0",
-    "typescript": "5.3.3"
-  }
+  "types": "dist/index.d.ts"
 }
