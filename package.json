@@ -4,7 +4,7 @@
   "author": "Robert Soriano <sorianorobertc@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wobsoriano/elysia-autoroutes.git"
+    "url": "git+https://github.com/Bewinxed/elysia-autoroutes-sveltekit.git"
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -33,12 +33,12 @@
       }
     }
   },
-  "bugs": "https://github.com/wobsoriano/elysia-autoroutes/issues",
+  "bugs": "https://github.com/Bewinxed/elysia-autoroutes-sveltekit/issues",
   "description": "File system routing for Elysia.",
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/wobsoriano/elysia-autoroutes#readme",
+  "homepage": "https://github.com/Bewinxed/elysia-autoroutes-sveltekit#readme",
   "keywords": [
     "bun"
   ],
