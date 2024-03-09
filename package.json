@@ -1,7 +1,7 @@
 {
   "name": "elysia-autoroutes-sveltekit",
   "version": "0.5.0",
-  "author": "Robert Soriano <sorianorobertc@gmail.com>",
+  "author": "Omar Al Matar (Bewinxed) <bewinxed@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bewinxed/elysia-autoroutes-sveltekit.git"
