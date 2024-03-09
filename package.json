@@ -42,6 +42,7 @@
   "keywords": [
     "bun"
   ],
+  
   "license": "MIT",
   "scripts": {
     "dev": "bun run ./playground/index.ts",
@@ -49,7 +50,8 @@
     "prepublishOnly": "bun run build",
     "lint": "eslint .",
     "release": "bumpp && npm publish",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prepare": "bunchee"
   },
   "types": "dist/index.d.ts"
 }
