@@ -1,27 +1,27 @@
-import path from 'node:path'
-import { handleParameters } from './handleParameters'
+import path from "node:path";
+import { handleParameters } from "./handleParameters";
 
 export function transformPathToUrl(filePath: string) {
-  const url = `/${filePath}` // Add leading slash to the URL
+	let url = `/${filePath}`; // Add leading slash to the URL
 
-  if (url.length === 1)
-    return url // If the URL is just "/", return it as is
+	// Handle the case when the input is just "/"
+	if (url === "/") return url;
 
-  const resultUrl = url
-    .split(path.sep)
-    .map(part => handleParameters(part))
-    .join('/') // Map and join the URL parts using handleParameters function
+	const resultUrl = url
+		.split(path.sep)
+		.map((part) => handleParameters(part))
+		.join("/"); // Map and join the URL parts using handleParameters function
 
-  // Remove 'index' from the end of the URL if it exists
-  let finalUrl = resultUrl.endsWith('index') ? resultUrl.replace(/\/?index$/, '') : resultUrl
+	// Handle SvelteKit-like route naming conventions
+	let finalUrl = resultUrl.replace(/\+\w+\.\w+$/g, ""); // Remove '+page.svelte' or similar from the URL
+	finalUrl = finalUrl.replace(/\[\.\.\.(\w+)\]/g, ":$1*"); // Replace '[...param]' with ':param*'
 
-  // Remove the trailing slash from the URL if it exists
-  finalUrl = finalUrl.replace(/\/$/, '')
+	// Remove leading and trailing slashes if they exist
+	finalUrl = finalUrl.replace(/^\/+|\/+$/g, "");
 
-  // If the URL is empty, replace it with the root path "/"
-  if (finalUrl.length === 0)
-    return '/'
+	// Handle the case when the result is an empty string
+	if (finalUrl === "") return "/";
 
-  // Replace multiple slashes with a single slash
-  return finalUrl.replace(/\/{2,}/g, '/')
+	// Replace multiple slashes with a single slash
+	return `/${finalUrl.replace(/\/{2,}/g, "/")}`;
 }

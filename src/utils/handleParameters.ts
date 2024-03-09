@@ -1,26 +1,21 @@
 export function handleParameters(token: string) {
-  const replacements = [
-    // Clean the url extensions
-    { regex: /\.(ts|js|mjs|cjs|jsx|tsx)$/u, replacement: '' },
+	const replacements = [
+		// Handle wildcard parameters - [...param]
+		{ regex: /\[\.\.\.(\w+)\]/g, replacement: ":$1*" },
+		// Handle optional parameters - [[param]]
+		{ regex: /\[\[(\w+)\]\]/g, replacement: ":$1?" },
+		// Handle generic square bracket based routes - [id] -> :id
+		{
+			regex: /\[(.*?)\]/g,
+			replacement: (_subString: string, match: string) => `:${match}`,
+		},
+	];
 
-    // Handle wild card based routes - users/[...id]/profile.ts -> users/*/profile
-    { regex: /\[\.\.\..+\]/gu, replacement: '*' },
+	let url = token;
 
-    // Handle generic square bracket based routes - users/[id]/index.ts -> users/:id
-    { regex: /\[(.*?)\]/gu, replacement: (_subString: string, match: string) => `:${match}` },
+	for (const { regex, replacement } of replacements) {
+		url = url.replace(regex, replacement as any);
+	}
 
-    // Handle the case when multiple parameters are present in one file
-    // users / [id] - [name].ts to users /: id -:name and users / [id] - [name] / [age].ts to users /: id -: name /: age
-    { regex: /\]-\[/gu, replacement: '-:' },
-    { regex: /\]\//gu, replacement: '/' },
-    { regex: /\[/gu, replacement: '' },
-    { regex: /\]/gu, replacement: '' },
-  ]
-
-  let url = token
-
-  for (const { regex, replacement } of replacements)
-    url = url.replace(regex, replacement as any)
-
-  return url
+	return url;
 }
